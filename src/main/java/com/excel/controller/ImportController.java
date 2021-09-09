@@ -177,32 +177,14 @@ public class ImportController {
     @PostMapping(value = "/count")
     @ResponseBody
     public Map<String, Object> count(@RequestBody Map<String, String> search) {
-        List<Map<String, Object>> searchData = new ArrayList<>();
         Map<String, Double> countMap = new HashMap<>();
-
-        for (Map<String, Object> datum : data) {
-            List<Boolean> flag = new ArrayList<>();
-            for (String key : search.keySet()) {
-                if (search.get(key).equals(datum.get(key))) {
-                    flag.add(true);
-                }
-            }
-            if (flag.size() == search.keySet().size()) {
-                searchData.add(datum);
-            }
-        }
-        if (CollUtil.isNotEmpty(searchData)) {
+        if (CollUtil.isNotEmpty(data)) {
             List<String> countList = new ArrayList<>();
             countList.add("本月供电量（kWh）");
             countList.add("本月售电量（kWh）");
-            countList.add("本月专变售电量（kWh）");
             countList.add("本月损失电量（kWh）");
-            countList.add("本月线损率（%）");
-            countList.add("累计供电量（kWh）");
-            countList.add("累计售电量（kWh）");
-            countList.add("上期线损率（%）");
 
-            for (Map<String, Object> searchDatum : searchData) {
+            for (Map<String, Object> searchDatum : data) {
                 for (String s : countList) {
                     String key = PinyinUtil.getPinYin(s).replace("%", "");
                     if (null == countMap.get(key)) {
@@ -486,29 +468,14 @@ public class ImportController {
         List<Map<String, Object>> searchData = new ArrayList<>();
         Map<String, Double> countMap = new HashMap<>();
 
-        for (Map<String, Object> datum : taiQuData) {
-            List<Boolean> flag = new ArrayList<>();
-            for (String key : search.keySet()) {
-                if (search.get(key).equals(datum.get(key))) {
-                    flag.add(true);
-                }
-            }
-            if (flag.size() == search.keySet().size()) {
-                searchData.add(datum);
-            }
-        }
-        if (CollUtil.isNotEmpty(searchData)) {
+        if (CollUtil.isNotEmpty(taiQuData)) {
             List<String> countList = new ArrayList<>();
             countList.add("本月供电量（kWh）");
             countList.add("本月售电量（kWh）");
-            countList.add("本月专变售电量（kWh）");
             countList.add("本月损失电量（kWh）");
-            countList.add("本月线损率（%）");
-            countList.add("累计供电量（kWh）");
-            countList.add("累计售电量（kWh）");
-            countList.add("上期线损率（%）");
+            countList.add("分表数");
 
-            for (Map<String, Object> searchDatum : searchData) {
+            for (Map<String, Object> searchDatum : taiQuData) {
                 for (String s : countList) {
                     String key = PinyinUtil.getPinYin(s).replace("%", "");
                     if (null == countMap.get(key)) {
