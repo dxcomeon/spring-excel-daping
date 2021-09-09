@@ -9,6 +9,7 @@ import com.excel.service.ImportService;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -142,7 +143,7 @@ public class ImportController {
             proportionData.put(PinyinUtil.getPinYin("本月线损率（%）").replace("%", ""),
                     datum.get(PinyinUtil.getPinYin("本月线损率（%）").replace("%", "")));
             proportionData.put(PinyinUtil.getPinYin("统计时间").replace("%", ""),
-                    DateUtil.now());
+                    DateUtil.formatTime(new Date()));
             if (search.get("colume").equals("1")) {
                 if (up >= 5) {
                     double v = now - up;
@@ -430,7 +431,7 @@ public class ImportController {
             proportionData.put(PinyinUtil.getPinYin("本月线损率（%）").replace("%", ""),
                     datum.get(PinyinUtil.getPinYin("本月线损率（%）").replace("%", "")));
             proportionData.put(PinyinUtil.getPinYin("统计时间").replace("%", ""),
-                    DateUtil.now());
+                    DateUtil.formatTime(new Date()));
             if (search.get("colume").equals("1")) {
                 if (up >= 5) {
                     double v = now - up;
