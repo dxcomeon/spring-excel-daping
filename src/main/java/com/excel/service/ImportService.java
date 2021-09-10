@@ -46,7 +46,7 @@ public class ImportService {
 
             for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
                 row = sheet.getRow(j);
-                if (row != null) {
+                if (row != null && StrUtil.isNotBlank(getCellValue(row.getCell(row.getFirstCellNum())))) {
                     if (row == null || row.getFirstCellNum() == j) {
                         for (int y = row.getFirstCellNum(); y < row.getLastCellNum(); y++) {
                             cell = row.getCell(y);
